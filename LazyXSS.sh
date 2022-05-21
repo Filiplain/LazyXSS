@@ -242,8 +242,6 @@ then
     do
      word=$(echo $input|tr ' ' '\n'| sed "$w,$w!d")
      out=$(echo $url|sed "s/$word/$payload2/" 2>/dev/null)
-     ###########      delete
-     ###############
      echo $out >> /tmp/url-path.tmp &
     done
    done
