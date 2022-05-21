@@ -1,12 +1,24 @@
 # LazyXSS
 
+## Install
+
+To get up and running, please use the `install.sh` script to get all the required tools.
+
+```
+chmod +x ./install.sh && ./install.sh
+```
+
 ## Description
 Script to automate XSS finding with the help of the following tools:
 
 * airixss
+https://github.com/ferreiraklet/airixss
 * hakrawler
+https://github.com/hakluke/hakrawler
 * qsreplace
+https://github.com/tomnomnom/qsreplace
 * httprobe
+https://github.com/tomnomnom/httprobe
 
 
 ## Usage
@@ -37,7 +49,7 @@ Script to automate XSS finding with the help of the following tools:
 
 
 ## Things to note
-
+* To get better results you can modify the `xss_payload=` and `reflect=` in the script, that way you can customize your XSS findings. Soon this will be added as a flag option like `-payload` and `-reflect`.
 * the `-p` flag is only used when the attack type is #3
 * Attack #2 only accepts 2000 urls, because it requires too much time to combine every URL path with the XSS payload
 * Attack #1 and #2 only accepts URLs, not domains.
