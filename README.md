@@ -11,13 +11,13 @@ chmod +x ./install.sh && ./install.sh
 ## Description
 Script to automate XSS finding with the help of the following tools:
 
-* airixss
+* airixss\
 https://github.com/ferreiraklet/airixss
-* hakrawler
+* hakrawler\
 https://github.com/hakluke/hakrawler
-* qsreplace
+* qsreplace\
 https://github.com/tomnomnom/qsreplace
-* httprobe
+* httprobe\
 https://github.com/tomnomnom/httprobe
 
 
@@ -28,22 +28,22 @@ https://github.com/tomnomnom/httprobe
 
 ## Available Flags
 -------------------------------------------------------------
-  -a)	  Set attack number (1,2,3):
-          1) Tries finding XSS in parameters on Given URL or list of URLs in a File.
-          2) Tries finding XSS in PATHs on Given URL or list of URLs in a File.
-          3) Probes given domain or domains in a file, Crawls the alive URLs and then try to find possible XSS on Parameters.
+  **-a)**	  Set attack number (1,2,3):\
+          1) Tries finding XSS in parameters on Given URL or list of URLs in a File.\
+          2) Tries finding XSS in PATHs on Given URL or list of URLs in a File.\
+          3) Probes given domain or domains in a file, Crawls the alive URLs and then try to find possible XSS on Parameters.\
           eg: -a 3
         
         
-  -t)     Set target giving a URL/domain or a list in a file depending on the attack type. 
- 	  eg: -t ./url-list.txt
+  **-t)**     Set target giving a URL/domain or a list in a file depending on the attack type.\ 
+ 	  eg: -t ./url-list.txt\
  	  eg: -t http://vulnpage.test
  	
  	
-  -p)     Set ports to probe (defaults 80,443).
+  **-p)**     Set ports to probe (defaults 80,443).\
 	  eg: -p 8000,8080,8085,10443
 
-  -h)	  Opens the help panel
+  **-h)**	  Opens the help panel
 
 -----------------------------------------------------------------
 
