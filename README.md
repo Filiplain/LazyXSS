@@ -5,6 +5,7 @@
 To get up and running, please use the `install.sh` script to get all the required tools.
 
 ```
+git clone https://github.com/Filiplain/LazyXSS.git
 chmod +x ./install.sh && ./install.sh
 ```
 
