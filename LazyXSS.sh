@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="$PATH:~/.LazyXSS:~/.LazyXSS/airixss:~/.LazyXSS/httprobe:~/.LazyXSS/qsreplace:~/.LazyXSS/hakrawler"
+export PATH="$PATH:$(PWD)/tools"
 
 
 # flags
