@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="$PATH:$(PWD)/tools"
+export PATH="$PATH:$PWD/tools"
 
 
 # flags
