@@ -1,5 +1,7 @@
 # LazyXSS
 
+![](https://raw.githubusercontent.com/Filiplain/LazyXSS/main/screenshot-lazyxss.png)
+
 ## Install
 
 To get up and running, please use the `install.sh` script to get all the required tools.
