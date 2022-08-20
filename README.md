@@ -6,7 +6,7 @@
 
 ```
 git clone https://github.com/Filiplain/LazyXSS.git
-cd LazyXSS && chmod +x tools/*
+cd LazyXSS && chmod +x ./LazyXSS.sh && chmod +x tools/*
 ```
 
 ## Description
