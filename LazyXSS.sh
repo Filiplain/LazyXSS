@@ -46,7 +46,7 @@ then
 	reflect=$custom
 else 
 xss_payload='"><svg onload=confirm(1)>'
-reflect="confirm(1)"
+reflect="<svg onload=confirm(1)>"
 
 fi
 
