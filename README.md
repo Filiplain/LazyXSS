@@ -3,10 +3,12 @@
 ![](https://raw.githubusercontent.com/Filiplain/LazyXSS/main/screenshot-lazyxss.png)
 
 ## Install
+(Make sure to have `golang-go` installed.)
 
 ```
 git clone https://github.com/Filiplain/LazyXSS.git
-cd LazyXSS && chmod +x ./LazyXSS.sh && chmod +x tools/*
+cd LazyXSS
+./install.sh
 ```
 
 ## Description
