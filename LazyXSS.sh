@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="$PATH:$PWD/tools"
+export PATH="$PATH:$HOME/go/bin"
 
 
 # flags
@@ -61,6 +61,7 @@ purple="\e[0;35m\033[1m"
 
 ## banner
 
+## Get your current IP
 function ip () {
 IP=$(curl -s ifconfig.me)
 cntry=$(whois $IP|grep country|awk -F ":" '{print $2}'|tr -d ' ')
@@ -68,7 +69,8 @@ cntry=$(whois $IP|grep country|awk -F ":" '{print $2}'|tr -d ' ')
 echo -e "\n${blue}Your IP is:${end} ${yellow}$IP${end} ${red}$cntry${end}"
 }
 
-ip 2>/dev/null
+## Get your IP ?
+# ip 2>/dev/null
 
 echo -e "${purple}
 
